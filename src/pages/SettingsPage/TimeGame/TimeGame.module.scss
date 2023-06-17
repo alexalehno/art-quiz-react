@@ -1,0 +1,66 @@
+@use '../../../styles/vars';
+
+.timeGameBlock {}
+
+.title {
+  margin-bottom: 40px;
+  font-size: 34px;
+  font-family: 'Gilroy-Bold';
+}
+
+.switcher {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 95px;
+}
+
+.switchLabel {
+  position: relative;
+
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.switchInput {
+  display: none;
+
+  &:checked+.settings__time-slider {
+    border-color: #FFBCA2;
+    background-color: #FFBCA2;
+  }
+
+  &:checked+.settings__time-slider:before {
+    transform: translateX(-24px);
+  }
+}
+
+.switchSlider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  border-radius: 34px;
+  border: 1px solid;
+
+  transition: vars.$transition;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    
+    background: rgba(255, 255, 255, 0.8);
+    transition: vars.$transition;
+  }
+}

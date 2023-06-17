@@ -1,0 +1,52 @@
+.questionResult {
+  max-width: 520px;
+  width: 90%;
+  padding: 30px;
+  border-radius: 20px;
+
+  color: #010101;
+  text-align: center;
+  font-family: "Gilroy-Regular";
+  background-color: white;
+}
+
+.image {
+  display: flex;
+  width: 100%;
+  height: 416px;
+  border-radius: 20px;
+
+  background-color: red;
+  background-position: center;
+  background-size: cover;
+}
+
+.indicator {
+  align-self: flex-end;
+  margin: 30px;
+}
+
+.title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 32px;
+}
+
+.author,
+.year {
+  display: inline-block;
+
+  font-size: 22px;
+  font-style: italic;
+}
+
+.resButton {
+  max-width: 400px;
+  width: 100%;
+  margin: 35px auto 0;
+  border: none;
+
+  font-weight: 600;
+  color: #010101;
+  background-color: #FFBCA2;
+}

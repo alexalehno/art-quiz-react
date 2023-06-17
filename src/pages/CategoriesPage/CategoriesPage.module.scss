@@ -1,0 +1,14 @@
+.categoryTitle {
+  margin-top: 0;
+  margin-bottom: 70px;
+  
+  font-size: 36px;
+  font-weight: normal;
+}
+
+.categoryList {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 0 30px;
+}

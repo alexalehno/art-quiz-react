@@ -1,0 +1,43 @@
+.quitGame {
+  max-width: 580px;
+  width: 100%;
+  padding: 40px 30px;
+  border-radius: 20px;
+
+  font-family: 'Gilroy-Regular';
+  text-align: center;
+  color: #010101;
+  background-color: white;
+}
+
+
+.title {
+  width: 340px;
+  margin: 50px auto;
+
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: -0.5px;
+}
+
+.buttonWrap {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto
+}
+
+.quitButton {
+  max-width: 250px;
+  width: 100%;
+  border: 1px solid black;
+
+  color: #010101;
+  background-color: white;
+
+  &:last-child {
+    border: none;
+    background-color: #FFBCA2;
+  }
+}
+ 

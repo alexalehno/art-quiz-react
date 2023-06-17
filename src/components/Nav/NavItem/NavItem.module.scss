@@ -1,0 +1,20 @@
+.navLink {
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+
+  &.active {
+    color: #ffbca2;
+    font-weight: 700;
+
+    .navIcon {
+      filter: sepia(41%) saturate(3675%) hue-rotate(295deg) brightness(102%) contrast(101%);
+    }
+  }
+}
+
+.navIcon {
+  display: none;
+  height: 24px;
+  margin: 0 auto 10px;
+}

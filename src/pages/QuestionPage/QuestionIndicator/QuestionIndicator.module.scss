@@ -1,0 +1,28 @@
+.questionIndicator {
+  display: flex;
+  justify-content: space-between;
+  max-width: 330px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.item {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #C4C4C4;
+
+  &.right {
+    background-color: rgb(61, 218, 105);
+  }
+  
+  &.wrong {
+    background-color: rgb(255, 126, 126);
+  }
+}
+
+// ........................
+.itemPassed {
+  background-color: #FFBCA2;
+}
+

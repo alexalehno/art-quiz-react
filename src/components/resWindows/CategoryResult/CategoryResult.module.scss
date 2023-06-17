@@ -1,0 +1,56 @@
+.catResult {
+  max-width: 520px;
+  width: 522px;
+  padding: 40px;
+  border-radius: 20px;
+
+  font-family: 'Gilroy-Regular';
+  text-align: center;
+  color: #010101;
+  background-color: white;
+}
+
+.image {
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 20px 0;
+  margin-bottom: 60px;
+
+  font-family: "Gilroy-Bold";
+  font-weight: 700;
+  font-size: 82px;
+  line-height: 78px;
+}
+
+.subTitle {
+  margin-bottom: 60px;
+
+  font-weight: 600;
+  font-size: 42px;
+}
+
+.buttonsWrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+// .....................
+
+.resButton {
+  max-width: 210px;
+  width: 100%;
+  margin-right: 20px;
+  border: 1px solid black;
+
+  color: #010101;
+  background-color: white;
+
+  &:last-child {
+    margin-right: 0;
+    border: none;
+    background-color: #FFBCA2;
+  }
+}

@@ -1,0 +1,88 @@
+@use '../../../styles/vars';
+
+.catItem {
+  position: relative;
+
+  max-width: 195px;
+  width: 47%;
+  margin: 3px 3px 20px;
+
+  list-style: none;
+
+  font-size: 16px;
+  letter-spacing: -0.5px;
+  transition: vars.$transition;
+
+  &:hover &_playAgain {
+    opacity: 1;
+  }
+
+  &:nth-child(odd):hover {
+    transform: rotate(15deg);
+  }
+
+  &:nth-child(even):hover {
+    transform: rotate(-15deg);
+  }
+
+  &_link {
+    display: block;
+
+    text-decoration: none;
+    color: white;
+  }
+
+  &_header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &_title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: normal;
+  }
+
+  &_score {
+    color: #FFBCA2;
+  }
+
+  &_img {
+    width: 100%;
+    border-radius: 20px;
+  }
+
+  &_playAgain {
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+
+    display: block;
+    width: 100%;
+    padding: 14px 0;
+    border-radius: 0 0 20px 20px;
+    
+    font-size: 16px;
+    letter-spacing: -0.62766px;
+    color: black;
+    background-color: #FFBCA2;
+    opacity: 0;
+    transition: vars.$transition;
+
+    &::before {
+      content: url('./play-again.svg');
+      margin-left: 25px;
+      margin-right: 10px;
+      vertical-align: top;
+    }
+  }
+}
+
+.notPlayed {
+  filter: grayscale(100%);
+
+  & .catItem_score,
+  .catItem_playAgain {
+    display: none;
+  }
+}

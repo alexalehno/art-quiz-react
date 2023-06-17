@@ -1,0 +1,52 @@
+@use '../../../styles/vars';
+
+
+.volumeBlock {
+  max-width: 500px;
+}
+
+.title { 
+  margin-bottom: 40px;
+  
+  font-size: 34px;
+  font-family: 'Gilroy-Bold';
+}
+
+.inputProgress {
+  width: 100%;
+  height: 3px;
+  margin-bottom: 25px;
+  border-radius: 50px;
+
+  // background: linear-gradient(to right,
+  //     #FFBCA2 0%,
+  //     #FFBCA2 0%,
+  //     #A4A4A4 0%,
+  //     #A4A4A4 100%);
+
+  -webkit-appearance: none;
+
+  &::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+
+    background: #ffffff;
+    -webkit-appearance: none;
+  }
+}
+
+.iconsWrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon {
+  height: 20px;
+  opacity: 0.3;
+
+  &.active {
+    opacity: 1;
+    filter: invert(30%) sepia(47%) saturate(332%) hue-rotate(10deg) brightness(105%) contrast(102%);
+  }
+}

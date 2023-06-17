@@ -1,0 +1,17 @@
+.header,
+.main {
+  display: flex;
+  align-items: center;
+  max-width: 825px;
+  width: 87%;
+  margin: 0 auto;
+}
+
+.header {
+  justify-content: space-between;
+}
+
+.main {
+  justify-content: center;
+}
+

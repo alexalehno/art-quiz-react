@@ -1,0 +1,32 @@
+.scorePageNumBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 180px;
+}
+
+.button {
+  width: 27px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+
+  &:first-child {
+    background-image: url('./icons/arrow-left.svg');
+  }
+
+  &:last-child {
+    background-image: url('./icons/arrow-right.svg');
+  }
+}
+
+.pageNumWrap {
+  font-size: 25px;
+}
+
+.pageNum {
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+}

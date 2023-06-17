@@ -1,0 +1,37 @@
+@use '../../../styles/vars';
+
+.picturesQuestion {
+  width: 100%;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+
+  font-size: 28px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+.optionWrap {
+  width: 48%;
+  height: 350px;
+  margin-bottom: 25px;
+  border-radius: 20px;
+
+  background-color: rgba(255, 255, 255, .5);
+  background-size: cover;
+  background-position: 50% 50%;
+  transition: opacity vars.$transition, background-image 1s ease-in-out 0s;
+
+  cursor: pointer;
+}
+
+.option {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  opacity: 0.6;
+}

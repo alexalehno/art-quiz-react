@@ -1,0 +1,43 @@
+@use './vars';
+
+
+.hoverRotate {
+  transition: vars.$transition;
+
+  &:hover {
+    transform: rotate(-360deg);
+  }
+}
+
+.hoverBg {
+  transition: vars.$transition;
+
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+
+  &:active {
+    border-color: #FFBCA2;
+    background-color: #FFBCA2;
+    color: black;
+  }
+}
+
+.hoverOpacity {
+  transition: vars.$transition;
+
+  &:hover {
+    opacity: vars.$opacity;
+  }
+}
+
+.gray {
+  filter: grayscale(1);
+}
+
+.error {
+  width: fit-content;
+  margin: 100px auto;
+  font-size: 50px;
+}

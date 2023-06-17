@@ -1,0 +1,27 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.pageTitle {
+  align-self: flex-start;
+  font-size: 36px;
+  text-transform: capitalize;
+}
+
+.scoreContent {
+  margin-bottom: 100px;
+}
+
+.scoreSubTitle {
+  font-size: 7rem;
+}
+
+.scoreList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 0;
+}
