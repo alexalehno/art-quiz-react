@@ -9,7 +9,7 @@
 
   list-style: none;
 
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: -0.5px;
   transition: vars.$transition;
 
@@ -84,5 +84,12 @@
   & .catItem_score,
   .catItem_playAgain {
     display: none;
+  }
+}
+
+
+@media all and (max-width: 520px) {
+  .catItem {
+    font-size: 16px;
   }
 }

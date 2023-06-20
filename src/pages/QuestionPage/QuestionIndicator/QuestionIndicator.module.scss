@@ -21,8 +21,15 @@
   }
 }
 
-// ........................
-.itemPassed {
-  background-color: #FFBCA2;
-}
 
+@media all and (max-width: 520px) {
+  .questionIndicator {
+    max-width: 250px;
+  }
+  
+  .item {
+    width: 11px;
+    height: 11px;
+  }
+}
+ 

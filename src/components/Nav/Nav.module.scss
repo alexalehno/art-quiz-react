@@ -1,8 +1,11 @@
 .nav {
-  width: 500px;
-  font-size: 22px;
+  max-width: 500px;
+  width: 100%;
+
   margin-left: 75px;
   margin-right: auto;
+    
+  font-size: 22px;
 }
 
 .navList {
@@ -10,6 +13,33 @@
   justify-content: space-around;
   width: 100%;
   padding: 0;
-  
+
   list-style: none;
+}
+
+
+@media all and (max-width: 768px) {
+  .nav {
+    max-width: 260px;
+    margin: 0;
+    font-size: 18px;
+  }
+}
+
+@media all and (max-width: 520px) {
+  .nav {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 9;
+
+    max-width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    border-radius: 20px 20px 0px 0px;
+
+    background-color: #000;
+    font-size: 12px;
+    letter-spacing: -0.5px;
+  }
 }

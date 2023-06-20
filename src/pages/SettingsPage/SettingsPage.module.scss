@@ -39,12 +39,69 @@
 }
 
 .setButton {
+  width: 287px;
+  height: 62px;
   font-size: 24px;
-  
+
   &:last-child {
     margin-left: 10px;
     border: none;
     color: black;
     background-color: #FFBCA2;
+  }
+}
+
+
+@media all and (max-width: 768px) {
+  .setHeader {
+    padding: 0 20px;
+  }
+
+  .main {
+    padding: 0 40px;
+  }
+
+  .parametersWrap {
+    height: 510px;
+    margin-bottom: 130px;
+  }
+
+  .buttonsWrap {
+    max-width: 100%;
+  }
+
+  .setButton {
+    width: 295px;
+    height: 56px;
+    font-size: 24px;
+  }
+}
+
+@media all and (max-width: 520px) {
+  .setHeader {
+    padding: 0;
+  }
+
+  .main {
+    padding: 0 25px;
+  }
+
+  .parametersWrap {
+    align-items: center;
+    height: 385px;
+    margin-bottom: 100px;
+  }
+
+  .buttonsWrap {
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .setButton {
+    max-width: 156px;
+
+    &:last-child {
+      margin-left: 20px;
+    }
   }
 }

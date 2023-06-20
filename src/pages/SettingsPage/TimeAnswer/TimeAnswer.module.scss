@@ -1,6 +1,5 @@
 @use '../../../styles/vars';
 
-.timeAnswerBlock {}
 
 .buttonWrap {
   display: flex;
@@ -35,7 +34,7 @@
   width: 60px;
   height: 100%;
   border: none;
-  
+
   text-align: center;
   color: white;
   font-size: 24px;
@@ -46,5 +45,14 @@
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
+  }
+}
+
+
+@media all and (max-width: 520px) {
+  .timeAnswerBlock { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

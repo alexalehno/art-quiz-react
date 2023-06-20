@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 70px;
 }
 
 .pageTitle {
@@ -11,12 +11,9 @@
   text-transform: capitalize;
 }
 
-.scoreContent {
-  margin-bottom: 100px;
-}
-
 .scoreSubTitle {
-  font-size: 7rem;
+  font-size: 6rem;
+  text-align: center;
 }
 
 .scoreList {
@@ -24,4 +21,11 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 0;
+}
+
+
+@media all and (max-width: 768px) {
+  .main {
+    padding: 0;
+  }
 }

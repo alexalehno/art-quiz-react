@@ -22,7 +22,6 @@ function ScorePageNum({page, size, setPage}) {
     setPage(page);
   }
 
-
   return (
     <div className={classes.scorePageNumBlock}> 
       <button onClick={decrease} className={classes.button}/>

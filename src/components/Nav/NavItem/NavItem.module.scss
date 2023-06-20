@@ -18,3 +18,12 @@
   height: 24px;
   margin: 0 auto 10px;
 }
+
+
+@media all and (max-width: 520px) {
+  .navIcon {
+    display: block;
+    height: 24px;
+    margin: 0 auto 10px;
+  }
+}

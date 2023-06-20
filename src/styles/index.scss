@@ -5,6 +5,7 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -48,4 +49,14 @@ button {
   background-color: black;
   box-shadow: 0px 0px 100px 0px rgb(0, 0, 0);
   overflow: hidden;
+
+  @media all and (max-width: 768px) {
+    padding: 40px 30px 27px;
+    margin: initial;
+  }
+
+  @media all and (max-width: 520px) {
+    min-height: 100vh;
+    padding: 22px 16px 10px;
+  }
 }

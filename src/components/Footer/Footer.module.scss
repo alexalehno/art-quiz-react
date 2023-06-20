@@ -1,5 +1,6 @@
 @use '../../styles/vars';
 
+
 .footer {
   display: flex;
   justify-content: space-between;
@@ -22,4 +23,19 @@
 
 .logoImg {
   width: 85px;
+}
+
+
+@media all and (max-width: 520px) {
+  .footer {
+    font-size: 14px;
+  }
+
+  .devName {
+    margin-right: auto;
+  }
+
+  .logoImg {
+    width: auto;
+  }
 }

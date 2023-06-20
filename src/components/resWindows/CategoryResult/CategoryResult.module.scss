@@ -11,12 +11,11 @@
 }
 
 .image {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .title {
-  margin: 20px 0;
-  margin-bottom: 60px;
+  margin: 0;
 
   font-family: "Gilroy-Bold";
   font-weight: 700;
@@ -33,24 +32,58 @@
 
 .buttonsWrap {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
 }
-
-// .....................
 
 .resButton {
   max-width: 210px;
   width: 100%;
-  margin-right: 20px;
+  height: 62px;
   border: 1px solid black;
 
+  font-size: 22px;
   color: #010101;
   background-color: white;
 
   &:last-child {
-    margin-right: 0;
     border: none;
     background-color: #FFBCA2;
+  }
+}
+
+
+@media all and (max-width: 768px) {
+  .catResult {
+    max-width: 380px;
+    width: 90%;
+    padding: 25px 15px;
+  }
+  
+  .image {
+    width: 150px;
+  }
+  
+  .title {
+    font-weight: 600;
+    font-size: 48px;
+  }
+  
+  .subTitle {
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 22px;
+  }
+  
+  .buttonsWrap {
+    max-width: 440px;
+    width: 100%;
+  }
+  
+  .resButton {
+    max-width: 210px;
+    width: 49%;
+    height: 48px;
+    font-size: 16px;
   }
 }

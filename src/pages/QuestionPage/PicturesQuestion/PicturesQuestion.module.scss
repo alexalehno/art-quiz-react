@@ -1,5 +1,6 @@
 @use '../../../styles/vars';
 
+
 .picturesQuestion {
   width: 100%;
 }
@@ -8,8 +9,8 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-bottom: 15px;
-
+  margin-bottom: 20px;
+  
   font-size: 28px;
   color: rgb(255, 255, 255);
   font-weight: bold;
@@ -34,4 +35,17 @@
   height: 100%;
   border-radius: inherit;
   opacity: 0.6;
+}
+
+
+@media all and (max-width: 768px) {
+  .optionWrap {
+    height: 260px;
+  }
+}
+
+@media all and (max-width: 520px) {
+  .optionWrap {
+    height: 200px;
+  }
 }

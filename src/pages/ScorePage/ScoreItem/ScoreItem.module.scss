@@ -1,9 +1,10 @@
 @use '../../../styles/vars';
 
+
 .scoreItem {
   max-width: 200px;
   width: 47%;
-  margin: 10px;
+  margin: 3px;
   list-style: none;
   cursor: pointer;
 }
@@ -56,4 +57,17 @@
 .itemArtist,
 .itemYear {
   font-style: italic;
+}
+
+
+@media all and (max-width: 768px) {
+  .main {
+    padding: 0;
+  }
+}
+
+@media all and (max-width: 520px) {
+  .itemName {
+    font-size: 19px;
+  }
 }

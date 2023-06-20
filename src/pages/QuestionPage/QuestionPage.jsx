@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { createOptions } from '../../funcs/funcs';
 import { setOptions, setAnswer, addQuestion, handleQuestionWindow, handleQuitWindow } from '../../store/gameSlice';
- 
+
 
 function QuestionPage({data}) {
   const {  currentQuestion, type, options, isAnswered } = useSelector(store => store.game);

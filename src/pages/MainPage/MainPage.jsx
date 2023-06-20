@@ -7,15 +7,17 @@ import SettingBtn from '../../components/UI/SettingBtn/SettingBtn';
 
 function MainPage() {
   const pageStyles = [styles.mainPage, 'page'].join(' ');
-  const linkStyles  = [styles.mainButton, 'hoverBg'].join(' ');
+  const linkStyles = [styles.mainButton, 'hoverBg'].join(' ');
   
   return (
-    <div className= {pageStyles}>
-      <SettingBtn 
-        cls={[styles.settingBtnMargin, 'hoverRotate']}
-        to='/settings'
-      />
-
+    <div className={pageStyles}>
+      <header className={styles.header}>
+        <SettingBtn 
+          cls={['hoverRotate']}
+          to='/settings'
+        />
+      </header>
+     
       <main className={styles.main}>
         <img className={styles.logo} src={icon} alt="logo-img"/>
 

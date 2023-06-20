@@ -1,7 +1,6 @@
 .categoryTitle {
-  margin-top: 0;
   margin-bottom: 70px;
-  
+
   font-size: 36px;
   font-weight: normal;
 }
@@ -11,4 +10,23 @@
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 0 30px;
+}
+
+
+@media all and (max-width: 768px) {
+  .categoryTitle {
+    margin: 70px 0;
+    font-size: 36px;
+  }
+
+  .categoryList {
+    padding: 0;
+  }
+}
+
+@media all and (max-width: 520px) {
+  .categoryTitle {
+    margin: 20px 0 50px;
+    font-size: 24px;
+  }
 }
