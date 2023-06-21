@@ -1,7 +1,7 @@
 .setHeader {
   display: flex;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 20px;
 }
 
 .setHeaderTitle {
@@ -89,12 +89,13 @@
   .parametersWrap {
     align-items: center;
     height: 385px;
-    margin-bottom: 100px;
+    margin-bottom: 80px;
   }
 
   .buttonsWrap {
     justify-content: center;
     max-width: 100%;
+    margin-bottom: 30px;
   }
 
   .setButton {
