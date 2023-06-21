@@ -3,21 +3,23 @@ import icon from './gear_btn.svg';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setPathname } from '../../../store/gameSlice';
+import { useEffect } from 'react';
 
 
 function SettingBtn({ to, cls }) {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const styles = [classes.button, ...cls ? cls : ''].join(' ');
-
+  
+  useEffect(()=> {
+    dispatch(setPathname({ pathname }));
+  }, [dispatch, pathname]);
+  
   return (
     <Link 
-      className={styles} 
+      className={[classes.button, ...cls ? cls : ''].join(' ')} 
       to={to} 
-      onClick={()=>dispatch(setPathname({ pathname }))}
-    >
-      <img src={icon} alt='icon'/>
-    </Link>
+      children={<img src={icon} alt='icon'/>}
+    />
   );
 }
 

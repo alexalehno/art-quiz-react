@@ -3,22 +3,14 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import CategoryItem from './CategoryItem/CategoryItem';
 import { importAll } from '../../funcs/funcs';
-import { useParams, useLocation } from 'react-router-dom';
-import { setPathname } from '../../store/gameSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 function CategoriesPage() {
   const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
   const { passedCaterogies } = useSelector(store => store.game);
   const { type } = useParams();
-  const { pathname } = useLocation();
-  const dispatch = useDispatch();
-  
-  useEffect(()=> {
-    dispatch(setPathname({pathname}));
-  }, [dispatch, pathname]);
 
   const getCatInfo = (cats, type, num) => {
     const result = cats
@@ -33,7 +25,6 @@ function CategoriesPage() {
     return [];
   }
 
-  
   return (
     <div className='page'>
       <Header />
