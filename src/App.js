@@ -8,13 +8,22 @@ import QuestionContainer from './pages/QuestionPage/QuestionContainer';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchData } from './store/gameSlice';
+import { getLocalStorage, setLocalStorage } from './store/gameSlice';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const { pathname, passedCaterogies } = useSelector(store => store.game);
   const dispatch = useDispatch();
 
-  useEffect(()=> {
+  useEffect(() => {
     dispatch(fetchData());
+    dispatch(getLocalStorage());
   }, [dispatch]);
+
+  useEffect(() => {
+    return () => dispatch(setLocalStorage());
+  }, [dispatch, pathname, passedCaterogies]);
+
 
   return (
     <div>

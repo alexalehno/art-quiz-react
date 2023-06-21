@@ -30,7 +30,7 @@ export const gameSlice = createSlice({
     status: null,
     error: null,
     answeredQuestionsInCategory: [],
-    passedCaterogies: [],
+    passedCaterogies: [], // <==................
     rightNumInCategory: null,
     totalNumInCategory: null,
     type: null,
@@ -46,6 +46,24 @@ export const gameSlice = createSlice({
   },
 
   reducers: {
+    getLocalStorage(state, action) {
+      let path = localStorage.getItem('pathname');
+      let cats = localStorage.getItem('categories');
+
+      if (cats) {
+        state.passedCaterogies = JSON.parse(localStorage.getItem('categories'));
+      }
+
+      if (path) {
+        state.pathname = path;
+      }
+    },
+
+    setLocalStorage(state, action) {
+      localStorage.setItem('pathname', state.pathname);
+      localStorage.setItem('categories', JSON.stringify(state.passedCaterogies));
+    },
+
     setOptions(state, action) {
       state.options = action.payload.options;
     },
@@ -163,5 +181,7 @@ export const {
   handleQuestionWindow,
   handleCategoryWindow,
   handleQuitWindow,
-  setOptions
+  setOptions,
+  getLocalStorage,
+  setLocalStorage
 } = gameSlice.actions;
