@@ -26,12 +26,12 @@
 .switchInput {
   display: none;
 
-  &:checked+.settings__time-slider {
+  &:checked+.switchSlider {
     border-color: #FFBCA2;
     background-color: #FFBCA2;
   }
 
-  &:checked+.settings__time-slider:before {
+  &:checked+.switchSlider:before {
     transform: translateX(-24px);
   }
 }
