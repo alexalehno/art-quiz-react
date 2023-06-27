@@ -5,43 +5,70 @@ import ArtistQuestion from './ArtistQuestion/ArtistQuestion';
 import PicturesQuestion from './PicturesQuestion/PicturesQuestion';
 import CloseBtn from '../../components/UI/CloseBtn/CloseBtn';
 import ResultWindows from '../../components/resWindows/ResultWindows';
+import { createOptions, highlight } from '../../funcs/funcs';
+import { setTime, setOptions, setAnswer, addQuestion, handleQuestionWindow, handleQuitWindow } from '../../store/gameSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { createOptions } from '../../funcs/funcs';
-import { setOptions, setAnswer, addQuestion, handleQuestionWindow, handleQuitWindow } from '../../store/gameSlice';
-
+import { useEffect, useCallback } from 'react';
 
 function QuestionPage({data}) {
-  const {  currentQuestion, type, options, isAnswered } = useSelector(store => store.game);
   const dispatch = useDispatch();
+  const { 
+    currentQuestion, 
+    type, 
+    options, 
+    isAnswered, 
+    isPassedCaterogy,
+    settings, 
+    timeout,
+    isQuit,
+  } = useSelector(store => store.game);
+ 
+  const handleAnswer = useCallback((isRight) => {
+    dispatch(setAnswer({isRight: isRight}));
+    dispatch(addQuestion());
+    dispatch(handleQuestionWindow({value: true}));
+  }, [dispatch]);
+
+  const checkAnswer = (number, e) => {
+    if (currentQuestion === Number(number)) {
+      handleAnswer(true);
+      highlight(e.target,'rgb(61, 218, 105)');
+
+    } else {
+      handleAnswer(false);
+      highlight(e.target, 'rgb(255, 126, 126)');
+    }
+  }
+
+  useEffect(()=> {
+    if (!timeout) {
+      handleAnswer(false);
+    }
+  }, [handleAnswer, timeout]);
 
   useEffect(()=> {
     dispatch(setOptions({options: createOptions(data, currentQuestion)}));
-  }, [dispatch, data, currentQuestion]);
-  
-  const check=(number, e)=>{
-    let isRight = null;
-    
-    currentQuestion === Number(number) 
-    ? answer(true, 'rgb(61, 218, 105)') 
-    : answer(false, 'rgb(255, 126, 126)');
-
-    dispatch(setAnswer({isRight}));
-    dispatch(addQuestion());
-    dispatch(handleQuestionWindow({value: true}));
-         
-    function answer(f, color) {
-      isRight=f;
-      e.target.style.backgroundColor=color;
-    }
-  };
-
+    dispatch(setTime({timeout: settings.timeToAnswer}));
+  }, [dispatch, data, currentQuestion, settings.timeToAnswer]);
 
   return (
     <div className='page'>
       <header className={classes.header}>
-        <CloseBtn onClick={()=>dispatch(handleQuitWindow({value: true}))} cls={['hoverRotate']}/>
-        <TimeIndicator/>
+        <CloseBtn 
+          onClick={()=>dispatch(handleQuitWindow({value: true}))} 
+          cls={['hoverRotate']}
+        />
+
+        <TimeIndicator
+          isTimeGame={settings.isTimeGame}
+          timeToAnswer={settings.timeToAnswer}
+          timeout={timeout}
+          setTime={setTime}
+          dispatch={dispatch}
+          isAnswered={isAnswered}
+          isPassedCaterogy={isPassedCaterogy}
+          isQuit={isQuit}
+        />
       </header>
 
       <main className={classes.main}>
@@ -50,14 +77,14 @@ function QuestionPage({data}) {
           ? <ArtistQuestion 
               imageNum={data[currentQuestion].imageNum}
               options={options} 
-              check={check}
+              checkAnswer={checkAnswer}
               isAnswered={isAnswered}
             />
 
           : <PicturesQuestion 
               author={data[currentQuestion].author}
               options={options} 
-              check={check}
+              checkAnswer={checkAnswer}
               isAnswered={isAnswered}
             />
         }

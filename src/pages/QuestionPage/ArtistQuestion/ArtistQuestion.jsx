@@ -5,7 +5,7 @@ import QuestionIndicator from '../QuestionIndicator/QuestionIndicator';
 import { getImage } from '../../../funcs/funcs';
 
 
-function ArtistQuestion({ options, imageNum, check, isAnswered }) { 
+function ArtistQuestion({ options, imageNum, checkAnswer, isAnswered }) { 
   return (
     <div className={classes.artistQuestion}>
       <QuestionTitle>Who is the author of this picture?</QuestionTitle>
@@ -21,7 +21,7 @@ function ArtistQuestion({ options, imageNum, check, isAnswered }) {
         {
           options.map(item => 
             <Button 
-              onClick={check}
+              onClick={checkAnswer}
               value={item.imageNum}
               name={item.author} 
               cls={[classes.option, 'hoverBg']} 

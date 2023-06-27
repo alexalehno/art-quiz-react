@@ -17,6 +17,7 @@ function ResultWindows() {
     isRight, 
     rightNumInCategory, 
     totalNumInCategory,
+    settings,
   } = useSelector(store => store.game);
 
   return (
@@ -28,6 +29,7 @@ function ResultWindows() {
               currentQuestion={currentQuestion} 
               lastQuestion={lastQuestion} 
               isRight={isRight}
+              volume={settings.volume}
             />}
           />
         : null 
@@ -37,13 +39,14 @@ function ResultWindows() {
         ? <Overlay children={
             <CategoryResult 
               result={chooseCategoryResult(rightNumInCategory, totalNumInCategory)}
+              volume={settings.volume}
             />} 
           /> 
         : null 
       }
 
       { isQuit 
-        ? <Overlay children={<QuitGame/>}/> 
+        ? <Overlay children={<QuitGame volume={settings.volume}/>}/> 
         : null 
       }
     </>

@@ -4,9 +4,9 @@ import QuestionIndicator from '../QuestionIndicator/QuestionIndicator';
 import { getImage } from '../../../funcs/funcs';
 
 
-function PicturesQuestion({ options, author, check, isAnswered }) {
+function PicturesQuestion({ options, author, checkAnswer, isAnswered }) {
   const click = (imageNum, e) => {
-    check(imageNum, e);
+    checkAnswer(imageNum, e);
     e.currentTarget.style.filter='none';
   }
 

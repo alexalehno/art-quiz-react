@@ -5,15 +5,14 @@ import CategoriesPage from './pages/CategoriesPage/CategoriesPage.jsx';
 import SettingsPage from './pages/SettingsPage/SettingsPage.jsx';
 import ScorePage from './pages/ScorePage/ScorePage.jsx';
 import QuestionContainer from './pages/QuestionPage/QuestionContainer';
-import { useDispatch } from 'react-redux';
+import { fetchData, getLocalStorage, setLocalStorage } from './store/gameSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchData } from './store/gameSlice';
-import { getLocalStorage, setLocalStorage } from './store/gameSlice';
-import { useSelector } from 'react-redux';
+
 
 function App() {
-  const { pathname, passedCaterogies } = useSelector(store => store.game);
   const dispatch = useDispatch();
+  const { pathname, passedCaterogies, settings } = useSelector(store => store.game);
 
   useEffect(() => {
     dispatch(fetchData());
@@ -22,8 +21,7 @@ function App() {
 
   useEffect(() => {
     return () => dispatch(setLocalStorage());
-  }, [dispatch, pathname, passedCaterogies]);
-
+  }, [dispatch, pathname, passedCaterogies, settings]);
 
   return (
     <div>

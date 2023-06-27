@@ -30,7 +30,7 @@ export const gameSlice = createSlice({
     status: null,
     error: null,
     answeredQuestionsInCategory: [],
-    passedCaterogies: [], // <==................
+    passedCaterogies: [],
     rightNumInCategory: null,
     totalNumInCategory: null,
     type: null,
@@ -43,12 +43,35 @@ export const gameSlice = createSlice({
     isPassedCaterogy: false,
     isAnswered: false,
     isQuit: false,
+
+    settings: {
+      volume: 0,
+      isTimeGame: false,
+      timeToAnswer: 5,
+    },
+
+    defaultSettings: {
+      volume: 0,
+      isTimeGame: false,
+      timeToAnswer: 5,
+    },
+    
+    timeout: 5,
   },
 
   reducers: {
+    setTime(state, action) {
+      state.timeout = action.payload.timeout;
+    },
+
+    saveSettings(state, action) {
+      state.settings = { ...action.payload };
+    },
+
     getLocalStorage(state, action) {
       let path = localStorage.getItem('pathname');
       let cats = localStorage.getItem('categories');
+      let settings = localStorage.getItem('settings');
 
       if (cats) {
         state.passedCaterogies = JSON.parse(localStorage.getItem('categories'));
@@ -57,11 +80,16 @@ export const gameSlice = createSlice({
       if (path) {
         state.pathname = path;
       }
+
+      if (settings) {
+        state.settings = JSON.parse(localStorage.getItem('settings'));
+      }
     },
 
     setLocalStorage(state, action) {
       localStorage.setItem('pathname', state.pathname);
       localStorage.setItem('categories', JSON.stringify(state.passedCaterogies));
+      localStorage.setItem('settings', JSON.stringify(state.settings));
     },
 
     setOptions(state, action) {
@@ -183,5 +211,7 @@ export const {
   handleQuitWindow,
   setOptions,
   getLocalStorage,
-  setLocalStorage
+  setLocalStorage,
+  setTime,
+  saveSettings
 } = gameSlice.actions;

@@ -1,30 +1,11 @@
 import classes from './ScorePageNum.module.scss';
+import { increase } from '../../../funcs/funcs';
 
 
-function ScorePageNum({page, size, setPage}) {
-  const decrease = () => {
-    page -=1;
-
-    if (page <= 0) {
-      page = 0;
-    }
-
-    setPage(page);
-  }
-
-  const increase = () => {
-    page +=1;
-
-    if (page >= size-1) {
-      page = size-1;
-    }
-
-    setPage(page);
-  }
-
+function ScorePageNum({page, setPage, size }) {
   return (
     <div className={classes.scorePageNumBlock}> 
-      <button onClick={decrease} className={classes.button}/>
+      <button onClick={()=>setPage(increase(page, -1, 0, size-1))} className={classes.button}/>
 
       <div className={classes.pageNumWrap}>
         <span className={classes.pageNum}>{size ? page + 1 : page}</span>
@@ -32,7 +13,7 @@ function ScorePageNum({page, size, setPage}) {
         <span className={classes.pageNum}>{size}</span>
       </div>
 
-      <button onClick={increase} className={classes.button}/>
+      <button onClick={()=>setPage(increase(page, 1, 0, size-1))} className={classes.button}/>
     </div>
   );
 }

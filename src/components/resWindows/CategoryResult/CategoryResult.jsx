@@ -1,11 +1,14 @@
 import classes from './CategoryResult.module.scss';
 import Button from '../../UI/Button/Button';
+import categoryEndSound from '../../../assets/audio/category_end.mp3';
+import { soundPlayer } from '../../../funcs/funcs';
+import { setCurrentQuestion, resetCategoryInfo, addCategory, handleCategoryWindow } from '../../../store/gameSlice';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentQuestion, resetCategoryInfo, addCategory, handleCategoryWindow } from '../../../store/gameSlice';
+import { useEffect } from 'react';
 
 
-function CategoryResult({ result }) {
+function CategoryResult({ result, volume }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { type, category, rightNumInCategory } = useSelector(store => store.game);
@@ -36,6 +39,10 @@ function CategoryResult({ result }) {
     dispatch(handleCategoryWindow({value: false}));
     navigate(`/categories/${type}${catNumber}`);
   } 
+
+  useEffect(()=> {
+    soundPlayer(categoryEndSound, volume);
+  }, [volume]);
 
   return(
     <div className={classes.catResult}>
