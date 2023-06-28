@@ -6,6 +6,10 @@ import { getImage } from '../../../funcs/funcs';
 
 function PicturesQuestion({ options, author, checkAnswer, isAnswered }) {
   const click = (imageNum, e) => {
+    if (isAnswered) {
+      return;
+    }
+    
     checkAnswer(imageNum, e);
     e.currentTarget.style.filter='none';
   }

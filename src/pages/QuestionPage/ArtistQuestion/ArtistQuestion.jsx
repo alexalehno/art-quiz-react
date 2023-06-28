@@ -26,6 +26,7 @@ function ArtistQuestion({ options, imageNum, checkAnswer, isAnswered }) {
               name={item.author} 
               cls={[classes.option, 'hoverBg']} 
               key={item.imageNum}
+              disabled={isAnswered}
             />
           )
         }
