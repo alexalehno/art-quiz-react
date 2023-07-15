@@ -1,29 +1,27 @@
 import classes from './TimeIndicator.module.scss';
+import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useTimer } from '../../../hooks/useTimer';
 
 
-function TimeIndicator({ dispatch, isTimeGame, timeToAnswer, timeout, setTime, isQuit, isAnswered, isPassedCaterogy }) {
-  const progressStyle = (timeout) => `${100 - (timeout * 100) / timeToAnswer}%`;
+function TimeIndicator({ handleAnswer }) {
+  const progressStyle = (timeout, time) => `${100 - (timeout * 100) / time}%`;
+  const { isAnswered, isPassedCaterogy, isQuit } = useSelector(store => store.game);
+  const { settings } = useSelector(store => store.settings);
+  const { timeToAnswer, isTimeGame } = settings;
+  const timeout = useTimer(timeToAnswer, [isAnswered, isPassedCaterogy, isQuit], isTimeGame);
 
-  useEffect(()=> { 
-    if(!isTimeGame) {
-      return;
+  useEffect(()=> {
+    if (!timeout) {
+      handleAnswer(false);
     }
-
-    const timerID = setTimeout(() => dispatch(setTime({timeout: timeout-1})), 1000);
-
-    if(!timeout || isQuit || isAnswered || isPassedCaterogy) {
-      clearTimeout(timerID);
-    }
-
-    return () => clearTimeout(timerID); 
-  }, [dispatch, setTime, isTimeGame, timeout, isQuit, isAnswered, isPassedCaterogy]);
+  }, [handleAnswer, timeout])
 
   return (
-    <div className={[classes.timeIndicator, isTimeGame ? '' : 'opacity'].join(' ')}>
+    <div className={[classes.timeIndicator, settings.isTimeGame ? '' : 'opacity'].join(' ')}>
       <div className={classes.progress}>
         <div 
-          style={{width: progressStyle(timeout)}}
+          style={{width: progressStyle(timeout, settings.timeToAnswer)}}
           className={classes.progressInner}
         />
       </div>

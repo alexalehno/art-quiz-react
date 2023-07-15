@@ -2,7 +2,7 @@ import classes from './CategoryItem.module.scss';
 import { Link } from 'react-router-dom';
 
 
-function CategoryItem({src, to, category, catInfo }) {
+function CategoryItem({ image, to, category, catInfo }) {
   const catItemClasses = [classes.catItem, catInfo.length ? '' : classes.notPlayed].join(' ');
   const [right, total] = catInfo;
 
@@ -18,7 +18,7 @@ function CategoryItem({src, to, category, catInfo }) {
           </div>
         </div>
   
-        <img className={classes.catItem_img} src={src} alt='category icon'/>
+        <img className={classes.catItem_img} src={image} alt='category icon'/>
         <span className={classes.catItem_playAgain}>Play again</span>
       </Link>
     </li>

@@ -1,33 +1,33 @@
 import classes from './QuestionPage.module.scss';
 import Footer from '../../components/Footer/Footer';
+import ResultWindows from '../../components/resWindows/ResultWindows';
+import CloseBtn from '../../components/UI/CloseBtn/CloseBtn';
 import TimeIndicator from './TimeIndicator/TimeIndicator';
 import ArtistQuestion from './ArtistQuestion/ArtistQuestion';
 import PicturesQuestion from './PicturesQuestion/PicturesQuestion';
-import CloseBtn from '../../components/UI/CloseBtn/CloseBtn';
-import ResultWindows from '../../components/resWindows/ResultWindows';
 import { createOptions, highlight } from '../../funcs/funcs';
-import { setTime, setOptions, setAnswer, addQuestion, handleQuestionWindow, handleQuitWindow } from '../../store/gameSlice';
+import { addAnswer, handleQuestionWindow, handleQuitWindow } from '../../store/gameSlice';
+import { useGetDataQuery } from '../../store/apiSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
-function QuestionPage({data}) {
+
+function QuestionPage() {
   const dispatch = useDispatch();
-  const { 
-    currentQuestion, 
-    type, 
-    options, 
-    isAnswered, 
-    isPassedCaterogy,
-    settings, 
-    timeout,
-    isQuit,
-  } = useSelector(store => store.game);
+  const { currentQuestion, type, isAnswered } = useSelector(store => store.game);
+  const { data } = useGetDataQuery();
  
   const handleAnswer = useCallback((isRight) => {
-    dispatch(setAnswer({isRight: isRight}));
-    dispatch(addQuestion());
-    dispatch(handleQuestionWindow({value: true}));
-  }, [dispatch]);
+    const answer = {
+      ...data[currentQuestion],
+      isRight,
+    } 
+
+    dispatch(addAnswer({ answer }));
+    dispatch(handleQuestionWindow({ value: true }));
+
+  }, [dispatch, data, currentQuestion]);
+
 
   const checkAnswer = (number, e) => {
     if (currentQuestion === Number(number)) {
@@ -40,17 +40,8 @@ function QuestionPage({data}) {
     }
   }
 
-  useEffect(()=> {
-    if (!timeout) {
-      handleAnswer(false);
-    }
-  }, [handleAnswer, timeout]);
-
-  useEffect(()=> {
-    dispatch(setOptions({options: createOptions(data, currentQuestion)}));
-    dispatch(setTime({timeout: settings.timeToAnswer}));
-  }, [dispatch, data, currentQuestion, settings.timeToAnswer]);
-
+  const options = useMemo(() => createOptions(data, currentQuestion), [data, currentQuestion]);
+      
   return (
     <div className='page'>
       <header className={classes.header}>
@@ -60,14 +51,8 @@ function QuestionPage({data}) {
         />
 
         <TimeIndicator
-          isTimeGame={settings.isTimeGame}
-          timeToAnswer={settings.timeToAnswer}
-          timeout={timeout}
-          setTime={setTime}
-          dispatch={dispatch}
-          isAnswered={isAnswered}
-          isPassedCaterogy={isPassedCaterogy}
-          isQuit={isQuit}
+          handleAnswer={handleAnswer}
+          key={currentQuestion}
         />
       </header>
 

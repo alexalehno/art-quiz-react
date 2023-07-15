@@ -1,26 +1,33 @@
 import QuestionPage from './QuestionPage';
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { setCurrentQuestion } from '../../store/gameSlice';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useGetDataQuery } from '../../store/apiSlice';
 
 
 function QuestionContainer() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { data, status, error } = useSelector(store => store.game);
   const { type, category } = useParams();
+  const { status, error } = useGetDataQuery();
 
   useEffect(()=> {
-    dispatch(setCurrentQuestion({ type, category }));
-  }, [dispatch, type, category]);
+    const cat = Number(category);
+
+    if (cat < 1 || cat > 12) {
+      navigate(`/${type}/1`);
+    }
+
+    dispatch(setCurrentQuestion({ type, category: cat }));
+  }, [dispatch, navigate, type, category]);
 
   return (
     <>
       {
-        status === 'resolved' 
-        ? <QuestionPage data={data} />
-        : <h1 className='error'>{error}</h1>
+        status === 'fulfilled' 
+        ? <QuestionPage />
+        : <h1 className='error'>{ error && error.error }</h1>
       }
     </>
   ) 

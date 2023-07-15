@@ -2,12 +2,13 @@ import classes from './Button.module.scss';
 
 
 function Button({name, value, onClick, cls, disabled}) {
-  const styles = [classes.button, ...cls ? cls : ''].join(' ');
- 
   return (
-    <button className={styles} onClick={(e)=>onClick(value, e)} disabled={disabled}>
-      {name}
-    </button>
+    <button 
+      onClick={(e)=>onClick(value, e)} 
+      className={[classes.button, ...cls ? cls : ''].join(' ')} 
+      disabled={disabled}
+      children={name}
+    />
   )
 }
 

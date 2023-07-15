@@ -6,7 +6,7 @@ import { increase } from '../../../funcs/funcs';
 function TimeAnswer({ settings, setSettings }) {
   return (
     <div className={[classes.timeAnswerBlock, settings.isTimeGame ? '' : 'opacity'].join(' ')}>
-      <ParamsTitle name={'Time to answer'}/>
+      <ParamsTitle>Time to answer</ParamsTitle>
 
       <div className={classes.buttonWrap}>
         <button 

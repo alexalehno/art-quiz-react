@@ -6,12 +6,12 @@ import { useParams } from 'react-router-dom';
 
 function Nav() {
   const icons = importAll(require.context('./icon', false, /\.(png|jpe?g|svg)$/));
-  const {type} = useParams();
+  const { type } = useParams();
   
   const items = [
     {name: 'Home', to: '/'},
-    {name: 'Categories', to: `/categories/${type}`},
-    {name: 'Score', to: `/categories/${type}/score`},
+    {name: 'Categories', to: `/${type}`},
+    {name: 'Score', to: `/${type}/score`},
   ];
 
   return (

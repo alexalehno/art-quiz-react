@@ -17,8 +17,8 @@ function Volume({ settings, setSettings }) {
 
   return(
     <div className={classes.volumeBlock}>
-      <ParamsTitle name={'Volume'}/>
-
+      <ParamsTitle>Volume</ParamsTitle>  
+ 
       <input 
         onChange={(e)=>volumeChange(e)}
         value={settings.volume}

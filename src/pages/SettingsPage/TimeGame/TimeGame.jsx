@@ -5,8 +5,8 @@ import ParamsTitle from '../ParamsTitle/ParamsTitle';
 function TimeGame({ settings, setSettings }) {
   return(
     <div className={classes.timeGameBlock}>
-      <ParamsTitle name={'Time game'}/>
-
+      <ParamsTitle>Time game</ParamsTitle>
+      
       <div className={classes.switcher}>
         <span>On</span>
 

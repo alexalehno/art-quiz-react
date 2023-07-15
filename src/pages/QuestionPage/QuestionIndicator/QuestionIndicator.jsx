@@ -3,16 +3,17 @@ import { useSelector } from 'react-redux';
 
 
 function QuestionIndicator() {
-  const { answeredQuestionsInCategory: arr } = useSelector(store => store.game);
-  const itemColor = (i, arr) => {
+  const { completedQuestions } = useSelector(store => store.game);
+
+  const itemStyle = (arr, i) => {
     if(arr[i] === undefined) {
       return '';
     }
-
+  
     if (arr[i].isRight === true) {
       return classes.right;
-    }
-
+    } 
+  
     if (arr[i].isRight === false) {
       return classes.wrong;
     }
@@ -23,7 +24,7 @@ function QuestionIndicator() {
       {
         new Array(10).fill(null).map((_, i) => 
           <span 
-            className={[classes.item, itemColor(i, arr)].join(' ')} 
+            className={[classes.item, itemStyle(completedQuestions, i)].join(' ')} 
             key={i}
           /> 
         )

@@ -6,17 +6,19 @@ import ScoreItem from './ScoreItem/ScoreItem';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-
+import { usePathname } from '../../hooks/usePathname';
 
 function ScorePage() {
+  const { completedCaterogies } = useSelector(store => store.game);
   const { type } = useParams();
-  const { passedCaterogies } = useSelector(store => store.game);
   const [ page, setPage ] = useState(0);
 
-  const caterogies = passedCaterogies
+  usePathname();
+  
+  const caterogies = completedCaterogies
     .filter(item => item.type === type)
-    .sort((a, b) => a.category - b.category);
-
+    .sort((a, b) => a.category - b.category)
+  ;
 
   return (
     <div className="page">

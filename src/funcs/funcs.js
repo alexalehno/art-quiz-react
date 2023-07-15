@@ -1,11 +1,11 @@
 
 export const soundPlayer = (track, volume) => {
   const audio = new Audio(track);
-  audio.volume = volume/100;
+  audio.volume = volume / 100;
   audio.play();
 }
 
-export const highlight = (el, color) => el.style.backgroundColor=color;
+export const highlight = (el, color) => el.style.backgroundColor = color;
 
 export const increase = (val, step, min, max) => {
   val += step;
@@ -31,36 +31,39 @@ export function getImage(number) {
 }
 
 export function createOptions(data, num) {
-  let options = [data[num]];
-
-  uniqueOptions();
-  shuffle(options);
+  const options = uniqueOptions([data[num]], 4);
+  // shuffle(options);
 
   return options;
 
-  function uniqueOptions() {
-    while (options.length < 4) {
+
+  function uniqueOptions(arr, n) {
+    let options = arr;
+
+    while (options.length < n) {
       const randNum = randomRange(0, data.length - 1);
       const option = data[randNum];
 
       if (options.includes(option)) {
-        return uniqueOptions();
+        return uniqueOptions(options, n);
       }
 
       options = [...options, option];
     }
+
+    return options;
   }
-}
 
-function shuffle(arr) {
-  const array = arr;
+  function shuffle(arr) {
+    const array = arr;
 
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
   }
-}
 
-function randomRange(n, m) {
-  return Math.floor(Math.random() * (m - n + 1)) + n;
+  function randomRange(n, m) {
+    return Math.floor(Math.random() * (m - n + 1)) + n;
+  }
 }

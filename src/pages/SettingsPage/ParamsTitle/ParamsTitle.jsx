@@ -1,7 +1,14 @@
-import classes from './ParamsTitle.module.scss';
+import styled from "styled-components";
 
-function ParamsTitle({name}) {
-  return <h3 className={classes.title}>{name}</h3>;
-}
+const ParamsTitle = styled.p`
+  margin-bottom: 40px;
+  font-size: 34px;
+  font-family: 'Gilroy-Bold';
+  
+  @media all and (max-width: 520px) {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+`;
 
 export default ParamsTitle;

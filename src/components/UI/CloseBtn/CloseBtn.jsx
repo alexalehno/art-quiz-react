@@ -3,12 +3,12 @@ import icon from './close_btn.svg';
 
 
 function CloseBtn({ onClick, cls }){
-  const styles = [classes.button, ...cls ? cls : ''].join(' ');
-
   return (
-    <span className={styles} onClick={onClick}>
-      <img src={icon} alt='icon'/>
-    </span>
+    <span 
+      onClick={onClick} 
+      className={[classes.button, ...cls ? cls : ''].join(' ')} 
+      children={<img src={icon} alt='icon'/>}
+    />
   );
 }
 
