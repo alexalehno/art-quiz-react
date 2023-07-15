@@ -32,7 +32,7 @@ export function getImage(number) {
 
 export function createOptions(data, num) {
   const options = uniqueOptions([data[num]], 4);
-  // shuffle(options);
+  shuffle(options);
 
   return options;
 
