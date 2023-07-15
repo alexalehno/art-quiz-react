@@ -2,17 +2,22 @@ import classes from './CategoryResult.module.scss';
 import Button from '../../UI/Button/Button';
 import categoryEndSound from '../../../assets/audio/category_end.mp3';
 import { soundPlayer } from '../../../funcs/funcs';
-import { setCurrentQuestion, resetCategoryInfo, addCategory, handleCategoryWindow } from '../../../store/gameSlice';
+import { chooseCategoryResult } from './categoryResultWindows';
+import { setCurrentQuestion, resetCompletedQuestions, addCategory, handleCategoryWindow } from '../../../store/gameSlice';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 
-function CategoryResult({ result, volume }) {
+function CategoryResult() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { type, category, rightNumInCategory } = useSelector(store => store.game);
-
+  const { type, category, completedQuestions, pathname } = useSelector(store => store.game);
+  const { settings } = useSelector(store => store.settings);
+  const rightAnswers = completedQuestions.filter(el => el.isRight).length;
+  const totalAnswers = completedQuestions.length;
+  const { icon, title, caption, buttons, isNext } = chooseCategoryResult(rightAnswers, totalAnswers);
+  
   const handleClick = (isNext) => {
     let catNumber = '';
 
@@ -27,39 +32,47 @@ function CategoryResult({ result, volume }) {
 
       } else {
         catNumber = `/${category}`;
-        dispatch(setCurrentQuestion({type, category}));
+        dispatch(setCurrentQuestion({ type, category }));
       }
     }
 
-    if (rightNumInCategory) {
-      dispatch(addCategory());
+    if (rightAnswers) {
+      const passedCat = {
+        type,
+        category,
+        right: rightAnswers,
+        total: totalAnswers,
+        questions: [...completedQuestions],
+      }
+
+      dispatch(addCategory({ category: passedCat }));
     }
 
-    dispatch(resetCategoryInfo()); 
+    dispatch(resetCompletedQuestions());
     dispatch(handleCategoryWindow({value: false}));
-    navigate(`/categories/${type}${catNumber}`);
+    navigate(`${pathname}${catNumber}`);
   } 
 
   useEffect(()=> {
-    soundPlayer(categoryEndSound, volume);
-  }, [volume]);
+    soundPlayer(categoryEndSound, settings.volume);
+  }, [settings.volume]);
 
   return(
     <div className={classes.catResult}>
-      <img className={classes.image} src={result.icon} alt="icon"/> 
-      <p className={classes.title}>{result.title}</p>
-      <p className={classes.subTitle}>{result.caption}</p>
+      <img className={classes.image} src={icon} alt="icon"/> 
+      <p className={classes.title}>{title}</p>
+      <p className={classes.subTitle}>{caption}</p>
    
       <div className={classes.buttonsWrap}>
         <Button 
           onClick={handleClick} 
-          name={result.buttons[0]}  
+          name={buttons[0]}  
           cls={[classes.resButton]} 
         />
 
         <Button 
-          onClick={()=>handleClick(result.isNext)} 
-          name={result.buttons[1]}  
+          onClick={()=>handleClick(isNext)} 
+          name={buttons[1]}  
           cls={[classes.resButton]} 
         />
       </div>

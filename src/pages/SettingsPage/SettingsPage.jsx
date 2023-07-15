@@ -1,23 +1,22 @@
 import classes from './SettingsPage.module.scss';
+import Button from '../../components/UI/Button/Button';
 import CloseBtn from '../../components/UI/CloseBtn/CloseBtn';
 import Footer from '../../components/Footer/Footer';
 import Volume from './Volume/Volume';
 import TimeGame from './TimeGame/TimeGame';
 import TimeAnswer from './TimeAnswer/TimeAnswer';
-import Button from '../../components/UI/Button/Button';
+import { saveSettings } from '../../store/settingsSlice';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { saveSettings } from '../../store/gameSlice';
 import { useEffect, useState } from 'react';
 
 
 function SettingsPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { pathname, settings, defaultSettings } = useSelector(store => store.game);
+  const { pathname,  defaultSettings } = useSelector(store => store.game);
+  const { settings } = useSelector(store => store.settings);
   const [ localSettings, setSettings ] = useState({ ...settings });
-  const save = () => dispatch(saveSettings({...localSettings}));
-  const setDefault = () => dispatch(saveSettings({...defaultSettings}));
 
   useEffect(()=> {
     setSettings({ ...settings });
@@ -53,8 +52,17 @@ function SettingsPage() {
         </div>
 
         <div className={classes.buttonsWrap}>
-          <Button cls={[classes.setButton, 'hoverOpacity']} onClick={setDefault} name='Default'/>
-          <Button cls={[classes.setButton, 'hoverOpacity']} onClick={save} name='Save'/>
+          <Button 
+            cls={[classes.setButton, 'hoverOpacity']} 
+            onClick={() => setSettings({...defaultSettings})} 
+            name='Default'
+          />
+
+          <Button 
+            cls={[classes.setButton, 'hoverOpacity']} 
+            onClick={() => dispatch(saveSettings({...localSettings}))} 
+            name='Save'
+          />
         </div>
       </main>  
       

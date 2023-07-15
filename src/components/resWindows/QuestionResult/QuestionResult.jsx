@@ -5,30 +5,31 @@ import iconWrong from './icons/icon-wrong.svg';
 import rightSound from '../../../assets/audio/right.mp3';
 import wrondSound from '../../../assets/audio/wrong.mp3';
 import { getImage, soundPlayer } from '../../../funcs/funcs';
-import { nextQuestion, getResultCategory, handleQuestionWindow, handleCategoryWindow } from '../../../store/gameSlice';
-import { useDispatch } from 'react-redux';
+import { nextQuestion, handleQuestionWindow, handleCategoryWindow } from '../../../store/gameSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
  
 
-function QuestionResult({info, currentQuestion, lastQuestion, isRight, volume} ) {
+function QuestionResult() {
   const dispatch = useDispatch();
-  const { imageNum, name, author, year } = info;
+  const { completedQuestions, lastQuestion } = useSelector(store => store.game);
+  const { settings } = useSelector(store => store.settings);
+  const { imageNum, name, author, year, isRight } = completedQuestions[completedQuestions.length-1];
   
   const next = () => {
     dispatch(handleQuestionWindow({value: false}));
 
-    if (currentQuestion !== lastQuestion) {
-      dispatch(nextQuestion());
+    if (Number(imageNum) === lastQuestion ) {
+      dispatch(handleCategoryWindow({value: true})) ;
 
     } else {
-      dispatch(getResultCategory());
-      dispatch(handleCategoryWindow({value: true}));
+      dispatch(nextQuestion());
     }
   } 
 
   useEffect(()=> {
-    soundPlayer(isRight ? rightSound : wrondSound, volume);
-  }, [isRight, volume]);
+    soundPlayer(isRight ? rightSound : wrondSound, settings.volume);
+  }, [isRight, settings.volume]);
 
   return(
     <div className={classes.questionResult}>
