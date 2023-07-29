@@ -6,26 +6,23 @@ import { importAll } from '../../funcs/funcs';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { usePathname } from '../../hooks/usePathname';
-
+import { selectCaterogiesByType } from '../../store/gameSlice';
 
 function CategoriesPage() {
   const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
-  const { completedCaterogies } = useSelector(store => store.game);
   const { type } = useParams();
+  const caterogies = useSelector(state => selectCaterogiesByType(state, type));
   
   usePathname();
 
-  const getCatInfo = (arr, type, num) => {
-    const result = arr
-      .filter(cat => cat.type === type)
-      .find(cat => cat.category === num)
-    ;
-  
-    if (result) {
-      return [result.right, result.total];
+  const getCatInfo = (arr, num) => {
+    const cat = arr.find(cat => cat.category === num);
+
+    if (cat) {
+      return [cat.right, cat.total]
     }
-  
-    return [];
+     
+    return []
   }
 
   return (
@@ -38,7 +35,7 @@ function CategoriesPage() {
         <ul className={classes.categoryList}> 
           { images.map((item, i) =>  
             <CategoryItem 
-              catInfo={getCatInfo(completedCaterogies, type, i+1)}
+              catInfo={getCatInfo(caterogies, i+1)}
               to={`/${type}/${i+1}`}
               image={item} 
               category={i+1}

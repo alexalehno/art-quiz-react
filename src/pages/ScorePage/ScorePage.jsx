@@ -7,19 +7,15 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { usePathname } from '../../hooks/usePathname';
+import { selectCaterogiesByType } from '../../store/gameSlice';
 
 function ScorePage() {
-  const { completedCaterogies } = useSelector(store => store.game);
   const { type } = useParams();
   const [ page, setPage ] = useState(0);
+  const caterogies = useSelector(state => selectCaterogiesByType(state, type));
 
   usePathname();
   
-  const caterogies = completedCaterogies
-    .filter(item => item.type === type)
-    .sort((a, b) => a.category - b.category)
-  ;
-
   return (
     <div className="page">
       <Header/>  

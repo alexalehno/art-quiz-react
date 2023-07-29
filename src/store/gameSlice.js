@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 
 export const gameSlice = createSlice({
@@ -79,3 +79,15 @@ export const {
   handleCategoryWindow,
   handleQuitWindow,
 } = gameSlice.actions;
+
+
+export const selectCaterogiesByType = createSelector(
+  [
+    (state) => state.game.completedCaterogies,
+    (state, type) => type
+  ],
+
+  (completedCaterogies, type) => completedCaterogies
+    .filter(item => item.type === type)
+    .sort((a, b) => a.category - b.category)
+)
