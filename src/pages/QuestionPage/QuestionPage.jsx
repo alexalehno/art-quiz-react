@@ -11,10 +11,9 @@ import { useGetDataQuery } from '../../store/apiSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useCallback, useMemo } from 'react';
 
-
-function QuestionPage() {
+function QuestionPage({ type }) {
   const dispatch = useDispatch();
-  const { currentQuestion, type, isAnswered } = useSelector(store => store.game);
+  const { currentQuestion, isAnswered } = useSelector(store => store.game);
   const { data } = useGetDataQuery();
  
   const handleAnswer = useCallback((isRight) => {

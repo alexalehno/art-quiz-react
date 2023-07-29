@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useGetDataQuery } from '../../store/apiSlice';
 
-
 function QuestionContainer() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,7 +25,7 @@ function QuestionContainer() {
     <>
       {
         status === 'fulfilled' 
-        ? <QuestionPage />
+        ? <QuestionPage type={type}/>
         : <h1 className='error'>{ error && error.error }</h1>
       }
     </>

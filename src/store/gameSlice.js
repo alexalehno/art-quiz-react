@@ -4,8 +4,6 @@ export const gameSlice = createSlice({
   name: 'game',
 
   initialState: {
-    type: '',
-    category: 1,
     currentQuestion: 0,
     completedQuestions: [],
     completedCaterogies: [],
@@ -17,10 +15,7 @@ export const gameSlice = createSlice({
 
   reducers: {
     setCurrentQuestion(state, action) {
-      const { category, type } = action.payload;
-
-      state.type = type;
-      state.category = category;
+      const { type, category } = action.payload;
       state.currentQuestion = type === 'artist' ? (category - 1) * 10 : (category - 1) * 10 + 120;
     },
 
@@ -42,13 +37,14 @@ export const gameSlice = createSlice({
     },
 
     addCategory(state, action) {
-      const { type, category, completedCaterogies } = state;
+      const { completedCaterogies } = state;
+      const { type, category, categoryObj } = action.payload;
 
       const filteredCaterogies = completedCaterogies.filter(item =>
         !(item.type === type && item.category === category)
       )
 
-      state.completedCaterogies = [...filteredCaterogies, action.payload.category];
+      state.completedCaterogies = [...filteredCaterogies, categoryObj];
     },
 
     handleQuestionWindow(state, action) {

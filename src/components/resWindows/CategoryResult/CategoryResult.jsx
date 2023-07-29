@@ -4,53 +4,56 @@ import categoryEndSound from '../../../assets/audio/category_end.mp3';
 import { soundPlayer } from '../../../funcs/funcs';
 import { chooseCategoryResult } from './categoryResultWindows';
 import { setCurrentQuestion, resetCompletedQuestions, addCategory, handleCategoryWindow } from '../../../store/gameSlice';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-
 
 function CategoryResult() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { type, category, completedQuestions, pathname } = useSelector(store => store.game);
+  const { type, category } = useParams();
+  const { completedQuestions, pathname } = useSelector(store => store.game);
   const { settings } = useSelector(store => store.settings);
+  
   const rightAnswers = completedQuestions.filter(el => el.isRight).length;
   const totalAnswers = completedQuestions.length;
   const { icon, title, caption, buttons, isNext } = chooseCategoryResult(rightAnswers, totalAnswers);
   
+  let categoryNum = Number(category);
+
   const handleClick = (isNext) => {
-    let catNumber = '';
+    let cat = '';
 
     if (isNext !== undefined) {
       if (isNext) {
-        if (category === 12) {
+        if (categoryNum === 12) {
          return handleClick();
 
         } else {
-          catNumber = `/${category + 1}`; 
+          cat = `/${categoryNum + 1}`; 
         }
 
       } else {
-        catNumber = `/${category}`;
-        dispatch(setCurrentQuestion({ type, category }));
+        cat = `/${categoryNum}`;
+        dispatch(setCurrentQuestion({ type, category: categoryNum }));
       }
     }
 
     if (rightAnswers) {
       const passedCat = {
         type,
-        category,
+        category: categoryNum,
         right: rightAnswers,
         total: totalAnswers,
         questions: [...completedQuestions],
       }
 
-      dispatch(addCategory({ category: passedCat }));
+      dispatch(addCategory({ categoryObj: passedCat, category: categoryNum, type }));
     }
 
     dispatch(resetCompletedQuestions());
     dispatch(handleCategoryWindow({value: false}));
-    navigate(`${pathname}${catNumber}`);
+    navigate(`${pathname}${cat}`);
   } 
 
   useEffect(()=> {
