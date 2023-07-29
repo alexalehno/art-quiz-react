@@ -10,12 +10,11 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
-
 function SettingsPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { pathname,  defaultSettings } = useSelector(store => store.game);
-  const { settings } = useSelector(store => store.settings);
+  const { pathname } = useSelector(store => store.game);
+  const { settings, defaultSettings } = useSelector(store => store.settings);
   const [ localSettings, setSettings ] = useState({ ...settings });
 
   useEffect(()=> {
