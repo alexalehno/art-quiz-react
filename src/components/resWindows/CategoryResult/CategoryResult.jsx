@@ -1,7 +1,7 @@
 import classes from './CategoryResult.module.scss';
 import Button from '../../UI/Button/Button';
 import categoryEndSound from '../../../assets/audio/category_end.mp3';
-import { soundPlayer } from '../../../funcs/funcs';
+import { soundPlayer, getCurrentQuestion } from '../../../funcs/funcs';
 import { chooseCategoryResult } from './categoryResultWindows';
 import { setCurrentQuestion, resetCompletedQuestions, addCategory, handleCategoryWindow } from '../../../store/gameSlice';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -35,7 +35,7 @@ function CategoryResult() {
 
       } else {
         cat = `/${categoryNum}`;
-        dispatch(setCurrentQuestion({ type, category: categoryNum }));
+        dispatch(setCurrentQuestion({ current: getCurrentQuestion(type, categoryNum) }));
       }
     }
 

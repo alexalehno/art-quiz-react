@@ -1,8 +1,13 @@
+export const getCurrentQuestion = (type, category) => {
+  return type === 'artist'
+    ? (category - 1) * 10
+    : (category - 1) * 10 + 120;
+}
 
 export const getLastQuestion = (type, category) => {
   return type === 'artist'
     ? category * 10 - 1
-    : category * 10 + 120 - 1;
+    : category * 10 - 1 + 120;
 }
 
 export const soundPlayer = (track, volume) => {
@@ -39,9 +44,8 @@ export function getImage(number) {
 export function createOptions(data, num) {
   const options = uniqueOptions([data[num]], 4);
   shuffle(options);
-
+  
   return options;
-
 
   function uniqueOptions(arr, n) {
     let options = arr;

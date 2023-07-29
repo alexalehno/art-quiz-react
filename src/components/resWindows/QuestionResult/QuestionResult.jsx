@@ -13,9 +13,8 @@ import { useParams } from 'react-router-dom';
 function QuestionResult() {
   const dispatch = useDispatch();
   const { type, category } = useParams();
-  const { completedQuestions } = useSelector(store => store.game);
   const { settings } = useSelector(store => store.settings);
-  const { imageNum, name, author, year, isRight } = completedQuestions[completedQuestions.length-1];
+  const { imageNum, name, author, year, isRight } = useSelector(store => store.game.completedQuestions.at(-1));
   
   const next = () => {
     dispatch(handleQuestionWindow({value: false}));

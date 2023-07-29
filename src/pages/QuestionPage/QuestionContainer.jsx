@@ -1,24 +1,26 @@
 import QuestionPage from './QuestionPage';
-import { setCurrentQuestion } from '../../store/gameSlice';
+import { setCurrentQuestion, resetCompletedQuestions } from '../../store/gameSlice';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useGetDataQuery } from '../../store/apiSlice';
+import { getCurrentQuestion } from '../../funcs/funcs';
 
 function QuestionContainer() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { type, category } = useParams();
   const { status, error } = useGetDataQuery();
-
+  
   useEffect(()=> {
-    const cat = Number(category);
+    const categoryNum = Number(category);
 
-    if (cat < 1 || cat > 12) {
+    if (categoryNum < 1 || categoryNum > 12) {
       navigate(`/${type}/1`);
     }
 
-    dispatch(setCurrentQuestion({ type, category: cat }));
+    dispatch(resetCompletedQuestions());
+    dispatch(setCurrentQuestion({ current: getCurrentQuestion(type, categoryNum) }));
   }, [dispatch, navigate, type, category]);
 
   return (

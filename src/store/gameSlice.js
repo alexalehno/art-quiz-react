@@ -15,8 +15,7 @@ export const gameSlice = createSlice({
 
   reducers: {
     setCurrentQuestion(state, action) {
-      const { type, category } = action.payload;
-      state.currentQuestion = type === 'artist' ? (category - 1) * 10 : (category - 1) * 10 + 120;
+      state.currentQuestion = action.payload.current;
     },
 
     setPathname(state, action) {
@@ -32,15 +31,13 @@ export const gameSlice = createSlice({
     },
 
     addAnswer(state, action) {
-      const { completedQuestions } = state;
-      state.completedQuestions = [...completedQuestions, action.payload.answer];
+      state.completedQuestions = [...state.completedQuestions, action.payload.answer];
     },
 
     addCategory(state, action) {
-      const { completedCaterogies } = state;
       const { type, category, categoryObj } = action.payload;
 
-      const filteredCaterogies = completedCaterogies.filter(item =>
+      const filteredCaterogies = state.completedCaterogies.filter(item =>
         !(item.type === type && item.category === category)
       )
 
