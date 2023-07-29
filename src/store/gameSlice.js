@@ -1,6 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 
-
 export const gameSlice = createSlice({
   name: 'game',
 
@@ -8,7 +7,6 @@ export const gameSlice = createSlice({
     type: '',
     category: 1,
     currentQuestion: 0,
-    lastQuestion: null,
     completedQuestions: [],
     completedCaterogies: [],
     isAnswered: false,
@@ -24,7 +22,6 @@ export const gameSlice = createSlice({
       state.type = type;
       state.category = category;
       state.currentQuestion = type === 'artist' ? (category - 1) * 10 : (category - 1) * 10 + 120;
-      state.lastQuestion = state.currentQuestion + 9;
     },
 
     setPathname(state, action) {
@@ -79,7 +76,6 @@ export const {
   handleCategoryWindow,
   handleQuitWindow,
 } = gameSlice.actions;
-
 
 export const selectCaterogiesByType = createSelector(
   [

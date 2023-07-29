@@ -1,4 +1,10 @@
 
+export const getLastQuestion = (type, category) => {
+  return type === 'artist'
+    ? category * 10 - 1
+    : category * 10 + 120 - 1;
+}
+
 export const soundPlayer = (track, volume) => {
   const audio = new Audio(track);
   audio.volume = volume / 100;

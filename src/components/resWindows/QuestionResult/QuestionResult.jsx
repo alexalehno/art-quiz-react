@@ -4,22 +4,23 @@ import iconRight from './icons/icon-right.svg';
 import iconWrong from './icons/icon-wrong.svg';
 import rightSound from '../../../assets/audio/right.mp3';
 import wrondSound from '../../../assets/audio/wrong.mp3';
-import { getImage, soundPlayer } from '../../../funcs/funcs';
+import { getImage, soundPlayer, getLastQuestion } from '../../../funcs/funcs';
 import { nextQuestion, handleQuestionWindow, handleCategoryWindow } from '../../../store/gameSlice';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
  
-
 function QuestionResult() {
   const dispatch = useDispatch();
-  const { completedQuestions, lastQuestion } = useSelector(store => store.game);
+  const { type, category } = useParams();
+  const { completedQuestions } = useSelector(store => store.game);
   const { settings } = useSelector(store => store.settings);
   const { imageNum, name, author, year, isRight } = completedQuestions[completedQuestions.length-1];
   
   const next = () => {
     dispatch(handleQuestionWindow({value: false}));
 
-    if (Number(imageNum) === lastQuestion ) {
+    if (Number(imageNum) === getLastQuestion(type, category)) {
       dispatch(handleCategoryWindow({value: true})) ;
 
     } else {
