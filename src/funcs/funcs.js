@@ -42,26 +42,27 @@ export function getImage(number) {
 }
 
 export function createOptions(data, num) {
-  const options = uniqueOptions([data[num]], 4);
-  shuffle(options);
-  
-  return options;
+  const { imageNum, author } = data[num];
+  return uniqueOptions(data, [imageNum], [author.toLowerCase()], 4);
 
-  function uniqueOptions(arr, n) {
-    let options = arr;
+  function uniqueOptions(data, arr1, arr2, n) {
+    let imageNumArr = arr1;
+    let authorArr = arr2;
 
-    while (options.length < n) {
+    while (imageNumArr.length < n) {
       const randNum = randomRange(0, data.length - 1);
-      const option = data[randNum];
+      const { imageNum, author } = data[randNum];
 
-      if (options.includes(option)) {
-        return uniqueOptions(options, n);
+      if (imageNumArr.includes(imageNum) || authorArr.includes(author.toLowerCase())) {
+        return uniqueOptions(data, imageNumArr, authorArr, n);
       }
 
-      options = [...options, option];
+      imageNumArr = [...imageNumArr, imageNum];
+      authorArr = [...authorArr, author.toLowerCase()];
     }
 
-    return options;
+    shuffle(imageNumArr);
+    return imageNumArr.map(num => data[num]);
   }
 
   function shuffle(arr) {
