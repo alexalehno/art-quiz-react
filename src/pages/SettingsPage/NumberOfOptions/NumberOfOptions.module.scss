@@ -1,0 +1,21 @@
+.numberOfOptions {
+  width: 120px;
+  height: 45px;
+  padding: 7px 10px;
+  border: 2px solid;
+  border-radius: 10px;
+  font-size: 24px;
+
+  background-color: black;
+  color: white;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    background-color: rgb(194, 194, 194);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #5e0000;
+  }
+}

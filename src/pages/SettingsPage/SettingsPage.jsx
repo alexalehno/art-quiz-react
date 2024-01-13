@@ -5,6 +5,7 @@ import Footer from '../../components/Footer/Footer';
 import Volume from './Volume/Volume';
 import TimeGame from './TimeGame/TimeGame';
 import TimeAnswer from './TimeAnswer/TimeAnswer';
+import NumberOfOptions from './NumberOfOptions/NumberOfOptions';
 import { saveSettings } from '../../store/settingsSlice';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -34,6 +35,11 @@ function SettingsPage() {
       
       <main className={classes.main}>
         <div className={classes.parametersWrap}>
+          <NumberOfOptions
+            settings={localSettings}
+            setSettings={setSettings}
+          /> 
+
           <Volume 
             settings={localSettings}
             setSettings={setSettings}

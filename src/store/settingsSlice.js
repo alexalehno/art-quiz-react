@@ -9,12 +9,14 @@ export const settingsSlice = createSlice({
       volume: 0,
       isTimeGame: false,
       timeToAnswer: 5,
+      numberOfOptions: 4,
     },
 
     defaultSettings: {
       volume: 0,
       isTimeGame: false,
       timeToAnswer: 5,
+      numberOfOptions: 4,
     },
   },
 

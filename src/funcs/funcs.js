@@ -41,9 +41,9 @@ export function getImage(number) {
   return `url(${src})`
 }
 
-export function createOptions(data, num) {
+export function createOptions(data, num, numOfOptions) {
   const { imageNum, author } = data[num];
-  return uniqueOptions(data, [imageNum], [author.toLowerCase()], 4);
+  return uniqueOptions(data, [imageNum], [author.toLowerCase()], numOfOptions);
 
   function uniqueOptions(data, arr1, arr2, n) {
     let imageNumArr = arr1;
@@ -77,4 +77,14 @@ export function createOptions(data, num) {
   function randomRange(n, m) {
     return Math.floor(Math.random() * (m - n + 1)) + n;
   }
+}
+
+export function getArrOfAuthors(data) {
+  let authors= [];
+
+  if (data) {
+    authors = data.map(el => el.author.toLowerCase());
+  }
+
+ return authors;
 }

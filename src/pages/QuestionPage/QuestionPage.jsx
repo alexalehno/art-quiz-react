@@ -14,6 +14,8 @@ import { useCallback, useMemo } from 'react';
 function QuestionPage({ type }) {
   const dispatch = useDispatch();
   const { currentQuestion, isAnswered } = useSelector(store => store.game);
+  const { settings } = useSelector(store => store.settings);
+  const { numberOfOptions } = settings;
   const { data } = useGetDataQuery();
  
   const handleAnswer = useCallback((isRight) => {
@@ -39,7 +41,10 @@ function QuestionPage({ type }) {
     }
   }
 
-  const options = useMemo(() => createOptions(data, currentQuestion), [data, currentQuestion]);
+  const options = useMemo(() => createOptions(
+    data, currentQuestion, numberOfOptions), 
+    [data, currentQuestion, numberOfOptions]
+  );
       
   return (
     <div className='page'>
