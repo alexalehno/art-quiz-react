@@ -1,15 +1,7 @@
 @use '../../../styles/vars';
 
-
 .volumeBlock {
   max-width: 500px;
-}
-
-.title { 
-  margin-bottom: 40px;
-  
-  font-size: 34px;
-  font-family: 'Gilroy-Bold';
 }
 
 .inputProgress {
@@ -17,12 +9,6 @@
   height: 3px;
   margin-bottom: 25px;
   border-radius: 50px;
-
-  // background: linear-gradient(to right,
-  //     #FFBCA2 0%,
-  //     #FFBCA2 0%,
-  //     #A4A4A4 0%,
-  //     #A4A4A4 100%);
 
   -webkit-appearance: none;
 
