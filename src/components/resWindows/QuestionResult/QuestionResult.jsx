@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
  
-function QuestionResult() {
+function QuestionResult({ cls }) {
   const dispatch = useDispatch();
   const { type, category } = useParams();
   const { settings } = useSelector(store => store.settings);
@@ -32,7 +32,7 @@ function QuestionResult() {
   }, [isRight, settings.volume]);
 
   return(
-    <div className={classes.questionResult}>
+    <div className={[classes.questionResult, cls].join(' ')}>
       <div className={classes.image} style={{ backgroundImage: getImage(imageNum) }}>
         <img 
           className={classes.indicator} 

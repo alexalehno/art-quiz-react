@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 
-function QuitGame() {
+function QuitGame({ cls }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { pathname } = useSelector(store => store.game);
@@ -25,7 +25,7 @@ function QuitGame() {
   }, [settings.volume]);
 
   return(
-    <div className= {classes.quitGame}>
+    <div className= {[classes.quitGame, cls].join(' ')}>
       <p className={classes.title}>Do you really want to quit the game?</p>
 
       <div className={classes.buttonWrap}>

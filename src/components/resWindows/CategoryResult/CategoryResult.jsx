@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-function CategoryResult() {
+function CategoryResult({ cls }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { type, category } = useParams();
@@ -61,7 +61,7 @@ function CategoryResult() {
   }, [settings.volume]);
 
   return(
-    <div className={classes.catResult}>
+    <div className={[classes.catResult, cls].join(' ')}>
       <img className={classes.image} src={icon} alt="icon"/> 
       <p className={classes.title}>{title}</p>
       <p className={classes.subTitle}>{caption}</p>

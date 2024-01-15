@@ -11,15 +11,15 @@ function ResultWindows() {
   return (
     <>
       { isAnswered &&
-        <Overlay children={<QuestionResult />}/>
+        <Overlay children={<QuestionResult cls='centerView'/>}/>
       }
 
       { isPassedCaterogy &&
-        <Overlay children={<CategoryResult />}/> 
+        <Overlay children={<CategoryResult cls='centerView'/>}/> 
       }
 
       { isQuit &&
-        <Overlay children={<QuitGame />}/> 
+        <Overlay children={<QuitGame cls='centerView'/>}/> 
       }
     </>
   )
