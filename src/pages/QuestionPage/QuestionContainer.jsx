@@ -1,5 +1,10 @@
 import QuestionPage from './QuestionPage';
-import { setCurrentQuestion, resetCompletedQuestions } from '../../store/gameSlice';
+import { 
+  handleQuestionWindow,
+  handleCategoryWindow,
+  handleQuitWindow, 
+  setCurrentQuestion,
+  resetCompletedQuestions } from '../../store/gameSlice';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -19,7 +24,11 @@ function QuestionContainer() {
       navigate(`/${type}/1`);
     }
 
+    dispatch(handleQuestionWindow({value: false}));
+    dispatch(handleCategoryWindow({value: false}));
+    dispatch(handleQuitWindow({value: false}));
     dispatch(resetCompletedQuestions());
+    
     dispatch(setCurrentQuestion({ current: getCurrentQuestion(type, categoryNum) }));
   }, [dispatch, navigate, type, category]);
 
